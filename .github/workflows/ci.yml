@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: moneyflow
+          POSTGRES_PASSWORD: moneyflow
+          POSTGRES_DB: moneyflow
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U moneyflow"
+          --health-interval 3s
+          --health-timeout 3s
+          --health-retries 10
+
+    env:
+      PGPASSWORD: moneyflow
+      DATABASE_URL: postgres://moneyflow:moneyflow@localhost:5432/moneyflow?sslmode=disable
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: banking-api/go.mod
+          cache-dependency-path: |
+            banking-api/go.sum
+            qa-automation/go.sum
+
+      - name: Apply migrations
+        run: |
+          for f in banking-api/migrations/*.sql; do
+            psql -h localhost -U moneyflow -d moneyflow -v ON_ERROR_STOP=1 -f "$f"
+          done
+
+      - name: Build and start API
+        working-directory: banking-api
+        run: |
+          go build -o ../api-bin ./cmd/api
+          cd ..
+          ./api-bin > api.log 2>&1 &
+          for i in $(seq 1 30); do
+            curl -sf localhost:8080/health && exit 0
+            sleep 1
+          done
+          echo "API did not start"; cat api.log; exit 1
+
+      - name: API, database and integration tests
+        working-directory: qa-automation
+        run: go test ./... -v -count=1 2>&1 | tee ../test-output.txt
+
+      - name: Concurrency tests x10
+        working-directory: qa-automation
+        run: go test ./tests/integration -count=10
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            test-output.txt
+            api.log

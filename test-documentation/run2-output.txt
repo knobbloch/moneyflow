@@ -1,0 +1,79 @@
+?   	moneyflow/qa-automation/helpers	[no test files]
+=== RUN   TestTC_ACC_001_CreateAccount
+--- PASS: TestTC_ACC_001_CreateAccount (0.01s)
+=== RUN   TestTC_ACC_002_CreateWithoutInitialBalance
+--- PASS: TestTC_ACC_002_CreateWithoutInitialBalance (0.00s)
+=== RUN   TestTC_ACC_003_EmptyName
+--- PASS: TestTC_ACC_003_EmptyName (0.00s)
+=== RUN   TestTC_ACC_004_UnsupportedCurrency
+--- PASS: TestTC_ACC_004_UnsupportedCurrency (0.00s)
+=== RUN   TestTC_ACC_005_NegativeInitialBalance
+--- PASS: TestTC_ACC_005_NegativeInitialBalance (0.00s)
+=== RUN   TestTC_ACC_006_MaxInitialBalance
+--- PASS: TestTC_ACC_006_MaxInitialBalance (0.00s)
+=== RUN   TestTC_ACC_007_AboveMaxInitialBalance
+--- PASS: TestTC_ACC_007_AboveMaxInitialBalance (0.00s)
+=== RUN   TestTC_ACC_008_GetAccount
+--- PASS: TestTC_ACC_008_GetAccount (0.01s)
+=== RUN   TestTC_ACC_009_InvalidUUID
+--- PASS: TestTC_ACC_009_InvalidUUID (0.00s)
+=== RUN   TestTC_ACC_010_AccountNotFound
+--- PASS: TestTC_ACC_010_AccountNotFound (0.00s)
+=== RUN   TestTC_ACC_011_BlockAccount
+--- PASS: TestTC_ACC_011_BlockAccount (0.01s)
+=== RUN   TestTC_ACC_012_BlockTwice
+--- PASS: TestTC_ACC_012_BlockTwice (0.00s)
+=== RUN   TestTC_TRF_001_SuccessfulTransfer
+--- PASS: TestTC_TRF_001_SuccessfulTransfer (0.01s)
+=== RUN   TestTC_TRF_002_CurrencyMismatch
+--- PASS: TestTC_TRF_002_CurrencyMismatch (0.00s)
+=== RUN   TestTC_TRF_003_InsufficientFunds
+--- PASS: TestTC_TRF_003_InsufficientFunds (0.00s)
+=== RUN   TestTC_TRF_004_NegativeAmount
+--- PASS: TestTC_TRF_004_NegativeAmount (0.00s)
+=== RUN   TestTC_TRF_005_ZeroAmount
+--- PASS: TestTC_TRF_005_ZeroAmount (0.00s)
+=== RUN   TestTC_TRF_006_MinAmount
+--- PASS: TestTC_TRF_006_MinAmount (0.01s)
+=== RUN   TestTC_TRF_007_MaxAmount
+--- PASS: TestTC_TRF_007_MaxAmount (0.00s)
+=== RUN   TestTC_TRF_008_AboveMaxAmount
+--- PASS: TestTC_TRF_008_AboveMaxAmount (0.00s)
+=== RUN   TestTC_TRF_009_SameAccount
+--- PASS: TestTC_TRF_009_SameAccount (0.00s)
+=== RUN   TestTC_TRF_010_RecipientNotFound
+--- PASS: TestTC_TRF_010_RecipientNotFound (0.00s)
+=== RUN   TestTC_TRF_011_SenderBlocked
+--- PASS: TestTC_TRF_011_SenderBlocked (0.00s)
+=== RUN   TestTC_TRF_012_RecipientBlocked
+--- PASS: TestTC_TRF_012_RecipientBlocked (0.03s)
+=== RUN   TestTC_TRF_013_MissingIdempotencyKey
+--- PASS: TestTC_TRF_013_MissingIdempotencyKey (0.03s)
+=== RUN   TestTC_TRF_014_IdempotentReplay
+--- PASS: TestTC_TRF_014_IdempotentReplay (0.01s)
+=== RUN   TestTC_TRF_015_IdempotencyKeyConflict
+--- PASS: TestTC_TRF_015_IdempotencyKeyConflict (0.01s)
+=== RUN   TestTC_TRF_016_TransferHistory
+--- PASS: TestTC_TRF_016_TransferHistory (0.08s)
+=== RUN   TestTC_TRF_017_HistoryInvalidPaging
+--- PASS: TestTC_TRF_017_HistoryInvalidPaging (0.00s)
+PASS
+ok  	moneyflow/qa-automation/tests/api	0.238s
+=== RUN   TestTC_DB_001_TransferKeepsTotalAndWritesRecord
+--- PASS: TestTC_DB_001_TransferKeepsTotalAndWritesRecord (0.05s)
+=== RUN   TestTC_DB_002_FailedTransferLeavesNoTrace
+--- PASS: TestTC_DB_002_FailedTransferLeavesNoTrace (0.03s)
+=== RUN   TestTC_DB_003_NegativeBalanceRejectedByDB
+--- PASS: TestTC_DB_003_NegativeBalanceRejectedByDB (0.01s)
+=== RUN   TestTC_DB_004_ReplayCreatesSingleRow
+--- PASS: TestTC_DB_004_ReplayCreatesSingleRow (0.08s)
+PASS
+ok  	moneyflow/qa-automation/tests/database	0.174s
+=== RUN   TestTC_TRF_018_ConcurrentTransfersDoNotOverdraw
+--- PASS: TestTC_TRF_018_ConcurrentTransfersDoNotOverdraw (0.07s)
+=== RUN   TestTC_TRF_019_ConcurrentSameIdempotencyKey
+--- PASS: TestTC_TRF_019_ConcurrentSameIdempotencyKey (0.02s)
+=== RUN   TestTC_TRF_020_OppositeTransfersNoDeadlock
+--- PASS: TestTC_TRF_020_OppositeTransfersNoDeadlock (0.10s)
+PASS
+ok  	moneyflow/qa-automation/tests/integration	0.194s
