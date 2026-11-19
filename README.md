@@ -1,14 +1,16 @@
+![CI](https://github.com/knobbloch/moneyflow/actions/workflows/ci.yml/badge.svg)
+
 # MoneyFlow
 
 **Backend API & QA Automation Portfolio Project**
 
 MoneyFlow is a demo banking application designed to demonstrate backend testing and QA automation skills using Go, REST API, and PostgreSQL.
 
-The project simulates basic banking operations, including account management and money transfers. Its main purpose is to demonstrate how to analyze requirements, design test scenarios, identify defects, and build automated API tests.
+The project simulates basic banking operations, including account management and money transfers. Its main purpose is to demonstrate practical QA skills: requirements analysis, test design, API testing, database validation, defect identification, and regression testing.
 
 ## Project Goals
 
-The main goal is to demonstrate practical skills required for a Backend QA/Golang Engineer position.
+The main goal is to demonstrate practical skills required for a Backend QA / Golang Engineer position.
 
 Key areas:
 
@@ -24,7 +26,7 @@ Key areas:
 
 ## Application Architecture
 
-The project consists of three main components:
+The project consists of three main components.
 
 ### 1. Banking API
 
@@ -63,7 +65,7 @@ QA documentation containing:
 | Git | Version control |
 | GitHub Actions | CI/CD and automated test execution |
 
-## Planned API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -77,75 +79,49 @@ QA documentation containing:
 
 ## Testing Scope
 
-The project will cover the following scenarios:
-
 ### Functional Testing
+
 - Account creation
 - Successful money transfers
 - Balance verification
 - Account blocking
+- Transfer details retrieval
+- Transfer history retrieval
 
 ### Negative Testing
+
 - Transfer with insufficient funds
 - Transfer with a negative amount
 - Transfer to a non-existent account
 - Transfer from a blocked account
 - Transfer to the same account
+- Invalid JSON payload
+- Unknown request fields
+- Invalid resource IDs
+- Requests for non-existent accounts and transfers
 
 ### Boundary Testing
+
 - Zero transfer amount
 - Minimum valid transfer amount
 - Maximum allowed transfer amount
 - Transfer exceeding available balance
+- Account names at length boundaries (100 and 101 characters)
+
+### Database Testing
+
+- Account data persistence
+- Transfer data persistence
+- Balance consistency
+- Database transaction integrity
 
 ### Advanced Testing
+
 - Idempotency
 - Concurrent money transfers
 - Database consistency
 - Transaction atomicity
+- UUID case handling
+- UTC timestamp validation
 
-## Project Structure
-
-```text
-moneyflow/
-├── banking-api/
-│   ├── cmd/
-│   ├── internal/
-│   │   ├── accounts/
-│   │   ├── transfers/
-│   │   └── database/
-│   └── migrations/
-├── qa-automation/
-│   ├── tests/
-│   │   ├── api/
-│   │   ├── integration/
-│   │   └── database/
-│   ├── helpers/
-│   ├── fixtures/
-│   └── testdata/
-├── postman/
-├── test-documentation/
-├── .github/
-│   └── workflows/
-├── docker-compose.yml
-└── README.md
-```
-
-## Project Status
-
-**Status: In Progress**
-
-The project is being developed incrementally.
-
-Planned milestones:
-
-- [ ] Initialize the project structure
-- [ ] Implement the Banking API
-- [ ] Integrate PostgreSQL
-- [ ] Prepare test documentation
-- [ ] Perform manual API testing
-- [ ] Implement Go API automation tests
-- [ ] Add database and integration tests
-- [ ] Test concurrency and idempotency
-- [ ] Prepare bug reports and regression results
-- [ ] Configure GitHub Actions
+## Test Results
